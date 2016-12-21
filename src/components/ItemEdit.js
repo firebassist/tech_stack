@@ -1,6 +1,4 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
-import { View, Text, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Card, CardSection, Input } from './common';
 //import ItemScreen from './ItemScreen';
@@ -13,10 +11,6 @@ class ItemEdit extends Component {
         myLibraryTitle: this.props.library.title,
         myLibraryDescription: this.props.library.description
       }
-    }
-
-  updateTitle = (myLibraryTitle) => {
-       this.setState({myLibraryTitle})
     }
 
   render() {

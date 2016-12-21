@@ -13,7 +13,7 @@ const initialState = [
 
 const todId = 2;
 
-export default (state = initialState, action) => {
+export default (state = [''], action) => {
   switch (action.type) {
     case 'select_library':
     console.log('PRESSED')
