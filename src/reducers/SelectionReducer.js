@@ -2,7 +2,7 @@ const initialState = [
   {
     "id": 0,
     "title": "Webpack",
-    "description": "lorem ipsum description"
+    "description": "some description"
   },
   {
     "id": 1,
