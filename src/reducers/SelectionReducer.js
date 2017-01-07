@@ -1,22 +1,20 @@
+import  { v4 } from 'node-uuid'
+
+import data from './LibraryList.json'
+
 const initialState = [
   {
-    "id": 0,
-    "title": "Webpack",
-    "description": "some description"
-  },
-  {
-    "id": 1,
-    "title": "React",
-    "description": "React description"
+    "id": v4(),
+    "title": "Sample Todo",
+    "description": "exmp"
   }
 ]
 
-const todId = 2;
+//const todId = 1;
 
-export default (state = [''], action) => {
+export default (state = data, action) => {
   switch (action.type) {
     case 'select_library':
-    console.log('PRESSED')
       return state.map(todo => {
         if (todo.id !== action.payloadId) {
           return todo;
@@ -32,11 +30,17 @@ export default (state = [''], action) => {
     case 'add_library':
       return [
         ...state, {
-          id: todId++,
+          id: v4(),
           title: action.payloadTitle,
           description: action.payloadDescription
         }
       ]
+
+    case 'remove_library':
+        console.log(action.payloadId + ' SELECTED')
+
+        const todoId = action.payloadId;
+          return state.filter(todo => todo.id !== todoId);
 
     default:
       return state;

@@ -10,7 +10,7 @@ import Router from './Router';
 
 const store = compose(autoRehydrate())(createStore)(reducers)
 
-persistStore(store, {storage: AsyncStorage, keyPrefix: 'rpstorage'} )
+persistStore(store, {storage: AsyncStorage, keyPrefix: 'rnxstorage'} )
 
 
 const App = () => {

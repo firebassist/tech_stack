@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Card, CardSection, Input } from './common';
+import { Actions } from 'react-native-router-flux';
+import { SimpleButton, Card, CardSection, Input } from './common';
 //import ItemScreen from './ItemScreen';
 import * as actions from '../actions';
 
@@ -8,10 +9,15 @@ class ItemEdit extends Component {
   constructor (props) {
     super(props)
     this.state = {
-        myLibraryTitle: this.props.library.title,
-        myLibraryDescription: this.props.library.description
-      }
+      myLibraryTitle: this.props.library.title,
+      myLibraryDescription: this.props.library.description
     }
+  }
+
+  onButtonPress() {
+    Actions.itemList()
+    this.props.removeLibraryActionCreator(this.props.library.id)
+  }
 
   render() {
     return (
@@ -33,9 +39,15 @@ class ItemEdit extends Component {
           />
         </CardSection>
         <CardSection>
-          <Button onPress={() => this.props.selectLibraryActionCreator(this.props.library.id, this.state.myLibraryTitle, this.state.myLibraryDescription)}>
+          <SimpleButton onPress={() => this.props.selectLibraryActionCreator(this.props.library.id, this.state.myLibraryTitle, this.state.myLibraryDescription)}>
             Save Changes
-          </Button>
+          </SimpleButton>
+        </CardSection>
+        <CardSection>
+          <SimpleButton
+            onPress={this.onButtonPress.bind(this)}>
+            Remove Item
+          </SimpleButton>
         </CardSection>
       </Card>
     );

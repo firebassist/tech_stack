@@ -14,3 +14,10 @@ export const addLibraryActionCreator = (title, description) => {
     payloadDescription: description
   }
 }
+
+export const removeLibraryActionCreator = (id) => {
+  return {
+    type: 'remove_library',
+    payloadId: id
+  }
+}

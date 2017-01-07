@@ -1,53 +1,42 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableHighlight, LayoutAnimation } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import * as actions from '../actions';
-import { CardSection } from './common';
+import { Card, CardSection, Button } from './common';
 
 class ListItem extends Component {
-  componentWillUpdate() {
-    LayoutAnimation.spring();
-  }
-
-  renderDescription() {
-    const { library, selectedLibraryIdFromMapStateToProps} = this.props
-
-    if(library.id === selectedLibraryIdFromMapStateToProps) {
-      return(
-        <CardSection>
-          <Text style = {{ flex: 1 }}>{library.description}</Text>
-        </CardSection>
-      );
-    }
-  }
-
   onButtonPress() {
     Actions.editItem({ library: this.props.library });
   }
 
   render() {
-    const { titleStyle } = styles;
     const { id, title } = this.props.library
 
     return (
-      <TouchableHighlight
-        onPress={this.onButtonPress.bind(this)}
-      >
-        <View>
-          <CardSection>
-            <Text style={titleStyle}>{title}</Text>
-          </CardSection>
-        </View>
-      </TouchableHighlight>
+      <Card>
+        <CardSection style={{ padding: 20 }}>
+          <TouchableOpacity
+            onPress={this.onButtonPress.bind(this)}>
+            <View>
+              <Text style={styles.textStyle}>
+                {title}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </CardSection>
+      </Card>
     );
   }
 }
 
 const styles = {
-  titleStyle: {
-    fontSize: 18,
-    paddingLeft: 15
+  textStyle: {
+    color: 'red',
+    fontSize: 20,
+    fontWeight: '600',
+    paddingTop: 5,
+    paddingBottom: 5
   }
 }
 
