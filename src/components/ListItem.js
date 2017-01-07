@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import * as actions from '../actions';
@@ -10,8 +10,25 @@ class ListItem extends Component {
     Actions.editItem({ library: this.props.library });
   }
 
+  getImage(id) {
+      switch(id) {
+          case 0:
+              return require('../images/spiced-beef.jpg');
+          case 1:
+              return require('../images/herbed-chicken.jpg');
+          case 2:
+              return require('../images/cheesy-potato.jpg');
+          case 3:
+              return require('../images/rice-pilaf.jpg');
+          default:
+              return require('../images/ovo-logo.jpg');
+      }
+  }
+
   render() {
-    const { id, title } = this.props.library
+    const { id, title, image } = this.props.library
+    //var icon = require('../images/spiced-beef.jpg')
+    icon = this.getImage(id)
 
     return (
       <Card>
@@ -19,6 +36,10 @@ class ListItem extends Component {
           <TouchableOpacity
             onPress={this.onButtonPress.bind(this)}>
             <View>
+              <Image
+                style={styles.imageStyle}
+                source={icon}
+              />
               <Text style={styles.textStyle}>
                 {title}
               </Text>
@@ -37,6 +58,11 @@ const styles = {
     fontWeight: '600',
     paddingTop: 5,
     paddingBottom: 5
+  },
+  imageStyle: {
+    height: 100,
+    flex: 1,
+    width: null
   }
 }
 
